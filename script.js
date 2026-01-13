@@ -1,6 +1,6 @@
 (() => {
   const inputs = {
-    'open-sesame': 'https://www.youtube.com/channel/UCsR0_oG3hOkFmh6A5DkUIhw'
+    'HvsQfsohcf': 'https://www.youtube.com/channel/UCsR0_oG3hOkFmh6A5DkUIhw'
   };
   const form = document.getElementById('secretForm');
   const input = document.getElementById('secretInput');
@@ -22,3 +22,4 @@
     if (inputs[val]) doRedirect(inputs[val]);
   });
 })();
+
