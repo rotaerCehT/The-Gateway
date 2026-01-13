@@ -1,6 +1,6 @@
 (() => {
   const inputs = {
-    'HvsQfsohcf': 'https://www.youtube.com/channel/UCsR0_oG3hOkFmh6A5DkUIhw'
+    'HvsQfsohcf': 'https://youtu.be/Y9MfJp9h9EI'
   };
   const form = document.getElementById('secretForm');
   const input = document.getElementById('secretInput');
@@ -11,15 +11,16 @@
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const val = input.value.trim().toLowerCase();
+    const val = input.value.trim();
     if (inputs[val]) {
       doRedirect(inputs[val]);
     }
   });
 
   input.addEventListener('input', () => {
-    const val = input.value.trim().toLowerCase();
+    const val = input.value.trim();
     if (inputs[val]) doRedirect(inputs[val]);
   });
 })();
+
 
