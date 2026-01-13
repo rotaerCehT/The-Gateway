@@ -1,6 +1,6 @@
 (() => {
   const inputs = {
-    'HvsQfsohcf': 'https://youtu.be/Y9MfJp9h9EI'
+    'HvsQfsohcf': 'https://youtu.be/fk6s6HpXNG4'
   };
   const form = document.getElementById('secretForm');
   const input = document.getElementById('secretInput');
@@ -22,5 +22,6 @@
     if (inputs[val]) doRedirect(inputs[val]);
   });
 })();
+
 
 
