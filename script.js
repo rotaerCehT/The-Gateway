@@ -35,7 +35,7 @@
             }).then(() => {
               document.body.removeChild(nameInput);
             }).catch(err => {
-              alert('But it was not sent. please try again in 5 minutes.);
+              alert('But it was not sent. please try again in 5 minutes.');
             });
           }
         }
@@ -58,4 +58,5 @@
     if (inputs[val]) handleAction(inputs[val]);
   });
 })();
+
 
