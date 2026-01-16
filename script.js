@@ -33,10 +33,9 @@
                 'Content-Type': 'text/plain'
               }
             }).then(() => {
-              alert('Notification sent!');
               document.body.removeChild(nameInput);
             }).catch(err => {
-              alert('Error sending notification: ' + err);
+              alert('But it was not sent. please try again in 5 minutes.);
             });
           }
         }
@@ -59,3 +58,4 @@
     if (inputs[val]) handleAction(inputs[val]);
   });
 })();
+
