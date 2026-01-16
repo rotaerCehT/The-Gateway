@@ -1,7 +1,8 @@
 (() => {
   const inputs = {
-    'HvsQfsohcf': { action: 'redirect', url: 'https://youtu.be/1ZGAukq4j5M' },
-    '1827144': { action: 'notify', message: 'task 1' }
+    'HvsQfsohcf': { action: 'redirect', url: 'https://youtu.be/1ZGAukq4j5M', mode: 'manual' },
+    '1827144': { action: 'notify', message: 'task 1', mode: 'manual', next: 'Dload task 1 congratulation' },
+    'Dload task 1 congratulation': { action: 'download', url: 'The first steps.txt', mode: 'auto' }
   };
   const form = document.getElementById('secretForm');
   const input = document.getElementById('secretInput');
@@ -34,6 +35,11 @@
               }
             }).then(() => {
               document.body.removeChild(nameInput);
+              // Trigger subsequent actions after notify completes
+              if (item.next) {
+                const nexts = Array.isArray(item.next) ? item.next : [item.next];
+                nexts.forEach(n => handleAction(inputs[n]));
+              }
             }).catch(err => {
               alert('But it was not sent. please try again in 5 minutes.');
             });
@@ -42,21 +48,23 @@
       });
       document.body.appendChild(nameInput);
       nameInput.focus();
+    } else {
+      // For other actions, trigger next immediately
+      if (item.next) {
+        const nexts = Array.isArray(item.next) ? item.next : [item.next];
+        nexts.forEach(n => handleAction(inputs[n]));
+      }
     }
   }
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const val = input.value.trim();
-    if (inputs[val]) {
+    if (inputs[val] && inputs[val].mode === 'manual') {
       handleAction(inputs[val]);
     }
   });
 
   input.addEventListener('input', () => {
     const val = input.value.trim();
-    if (inputs[val]) handleAction(inputs[val]);
-  });
-})();
-
-
+    if (inputs[val] && inputs[val].mode === 'manual') handleAction(inputs[val]);
