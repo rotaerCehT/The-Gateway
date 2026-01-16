@@ -68,3 +68,5 @@
   input.addEventListener('input', () => {
     const val = input.value.trim();
     if (inputs[val] && inputs[val].mode === 'manual') handleAction(inputs[val]);
+  });
+})();
