@@ -17,30 +17,32 @@
       link.click();
       document.body.removeChild(link);
     } else if (item.action === 'notify') {
-      const nameDiv = document.createElement('div');
-      nameDiv.innerHTML = `
-        <input type="text" id="nameInput" placeholder="Your name, please friend" />
-        <button id="sendBtn">Confirm.</button>
-      `;
-      document.body.appendChild(nameDiv);
-      document.getElementById('sendBtn').addEventListener('click', () => {
-        const name = document.getElementById('nameInput').value.trim();
-        if (name) {
-          const message = `${name} has completed ${item.message}`;
-          fetch('https://ntfy.sh/ARG_completions', {
-            method: 'POST',
-            body: message,
-            headers: {
-              'Content-Type': 'text/plain'
-            }
-          }).then(() => {
-            alert('Notification sent!');
-            document.body.removeChild(nameDiv);
-          }).catch(err => {
-            alert('Error sending notification: ' + err);
-          });
+      const nameInput = document.createElement('input');
+      nameInput.type = 'text';
+      nameInput.className = 'name-input';
+      nameInput.placeholder = 'Your name, please friend';
+      nameInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const name = nameInput.value.trim();
+          if (name) {
+            const message = `${name} has completed ${item.message}`;
+            fetch('https://ntfy.sh/ARG_completions', {
+              method: 'POST',
+              body: message,
+              headers: {
+                'Content-Type': 'text/plain'
+              }
+            }).then(() => {
+              alert('Notification sent!');
+              document.body.removeChild(nameInput);
+            }).catch(err => {
+              alert('Error sending notification: ' + err);
+            });
+          }
         }
       });
+      document.body.appendChild(nameInput);
+      nameInput.focus();
     }
   }
 
